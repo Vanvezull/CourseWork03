@@ -10,6 +10,11 @@ class TestCommentDAO:
         return comment_dao_instance
 
     def test_type_of_comment(self, comments_dao):
+        """
+        Тест того что словарь нужного типа
+        :param comments_dao:
+        :return:
+        """
         comments = comments_dao.get_comments_by_post_id(544)
         assert type(comments) == list
 

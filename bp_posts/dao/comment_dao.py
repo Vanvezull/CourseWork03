@@ -20,11 +20,18 @@ class CommentsDAO:
         return post_data
 
     def _load_comments(self):
+        """
+        Загружает все коментарии
+        :return:
+        """
         comments_data = self._load_data()
         comments = [Comment(**comments_data) for comments_data in comments_data]
         return comments
 
     def get_comments_by_post_id(self, post_id):
+        """
+        Возвращает коментарии к определенному посту
+        """
         try:
             comments = self._load_comments()
             comments_match = [comment for comment in comments if comment.post_id == post_id]

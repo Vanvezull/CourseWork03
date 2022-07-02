@@ -16,18 +16,28 @@ def create_app(config_path):
 
 app = create_app('config.py')
 
-logger = create_logger()
+logger = create_logger("main")
 
 @app.route('/api/posts/')
+
 def all_posts_api():
+    """
+    Выводит все посты API
+    :return:
+    """
     all_posts = utils.load_all_posts_for_api()
     logger.info("Совершен запрос ко всем постам API")
     return jsonify(all_posts)
 
 @app.route('/api/posts/<int:pk>')
 def post_api(pk):
+    """
+    Выводит один пост API по pk
+    :param pk:
+    :return:
+    """
     post = utils.get_post_by_pk_for_api(pk)
-    logger.info(f"Совершен запрос ко всем посту {pk} API")
+    logger.info(f"Совершен запрос к посту {pk} API")
     return jsonify(post)
 
 @app.errorhandler(404)

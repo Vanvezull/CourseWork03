@@ -5,7 +5,7 @@ from bp_posts.dao.post import Post
 from exceptions.exceptions import DataSourceError
 from logger import create_logger
 
-logger = create_logger()
+logger = create_logger("post_dao_log")
 
 class PostDAO:
 
@@ -29,10 +29,19 @@ class PostDAO:
         return list_posts
 
     def get_all_posts(self):
+        """
+        Возвращает все посты
+        :return:
+        """
         posts = self._load_posts()
         return posts
 
     def get_post_by_pk(self, pk):
+        """
+        Возвращает пост по pk
+        :param pk:
+        :return:
+        """
 
         if type(pk) != int:
             raise TypeError("pk должен быть числом")
@@ -43,6 +52,11 @@ class PostDAO:
                 return post
 
     def search_in_content(self, substring):
+        """
+        Выполняет поиск Search
+        :param substring:
+        :return:
+        """
 
         substring = str(substring).lower()
         posts = self._load_posts()
@@ -51,6 +65,11 @@ class PostDAO:
         return matching_posts
 
     def get_by_user(self, user_name):
+        """
+        Возвращает все посты пользователя
+        :param user_name:
+        :return:
+        """
 
         user_name = str(user_name).lower()
         posts = self._load_posts()
